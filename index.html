@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Ilakkiya R, Lead Frontend Developer. Built Mokkup.ai from scratch, leads an 8-person frontend team. React, Next.js, TypeScript.">
+<meta property="og:title" content="Ilakkiya R · Lead Frontend Developer">
+<meta property="og:description" content="Built Mokkup.ai from scratch and leads an 8-person frontend team.">
+<meta property="og:type" content="website">
+<title>Ilakkiya R</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: an editor canvas — dotted artboard ground, the hero name sits in a "selected" frame with handles; work shown as artboards */
+:root{
+  --bg:#f4f6f9; --surface:#ffffff; --ink:#0f2a4a; --fg:#26364a; --muted:#5d6b7c;
+  --line:#d9e0e8; --dot:#cfd7e2; --accent:#1d6fb8; --accent-soft:#e3eefa; --warm:#e0763c;
+  --display:"Bricolage Grotesque", "Avenir Next", system-ui, sans-serif;
+  --body:"IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono:"JetBrains Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0c1420; --surface:#121d2c; --ink:#eef3f9; --fg:#c9d4e1; --muted:#8a99ab;
+  --line:#22324a; --dot:#1f2e44; --accent:#5aa2e8; --accent-soft:#16304d; --warm:#f08a52; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0c1420; --surface:#121d2c; --ink:#eef3f9; --fg:#c9d4e1; --muted:#8a99ab;
+  --line:#22324a; --dot:#1f2e44; --accent:#5aa2e8; --accent-soft:#16304d; --warm:#f08a52; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 var(--body);
+  background-image:radial-gradient(var(--dot) 1px, transparent 1px);background-size:22px 22px}
+a{color:var(--accent)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1080px;margin:0 auto;padding-inline:clamp(16px,4vw,40px);padding-block:0}
+h1,h2,h3{font-family:var(--display);color:var(--ink);text-wrap:balance;margin:0}
+.label{font:500 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+/* nav */
+nav{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:22px;flex-wrap:wrap}
+nav .mark{font:700 18px var(--display);color:var(--ink);text-decoration:none}
+nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0;flex-wrap:wrap}
+nav ul a{color:var(--muted);text-decoration:none;font-size:14px}
+nav ul a:hover{color:var(--ink)}
+
+/* hero */
+.hero{padding-block:clamp(36px,8vw,88px) clamp(40px,7vw,80px)}
+.sel{position:relative;display:inline-block;padding:6px 14px 10px;border:1.5px solid var(--accent);margin-top:28px}
+.sel i{position:absolute;width:9px;height:9px;background:var(--surface);border:1.5px solid var(--accent)}
+.sel i:nth-child(1){left:-5px;top:-5px}.sel i:nth-child(2){right:-5px;top:-5px}
+.sel i:nth-child(3){left:-5px;bottom:-5px}.sel i:nth-child(4){right:-5px;bottom:-5px}
+.sel .tag{position:absolute;left:-1.5px;top:-26px;background:var(--accent);color:var(--surface);font:500 11px/1 var(--mono);padding:5px 7px;white-space:nowrap}
+.sel .dim{position:absolute;right:0;bottom:-24px;font:500 11px var(--mono);color:var(--accent);white-space:nowrap}
+.hero h1{font-size:clamp(46px,10vw,112px);font-weight:800;line-height:.95;letter-spacing:-.02em}
+.role{font:600 clamp(18px,2.4vw,24px) var(--display);color:var(--accent);margin:34px 0 0}
+.intro{max-width:62ch;font-size:clamp(16px,1.6vw,18px);margin:16px 0 0}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:6px;font:500 14px var(--body);text-decoration:none;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.btn.primary{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.btn:hover{border-color:var(--accent)}
+
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:clamp(40px,6vw,64px)}
+.facts div{background:var(--surface);padding:18px 20px}
+.facts b{display:block;font:700 28px var(--display);color:var(--ink);font-variant-numeric:tabular-nums}
+.facts span{font-size:14px;color:var(--muted)}
+
+section{padding-block:clamp(48px,7vw,84px);border-top:1px solid var(--line)}
+.head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:32px}
+.head h2{font-size:clamp(28px,4vw,40px);font-weight:700}
+
+/* featured project */
+.feature{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(24px,4vw,48px);align-items:start}
+.feature > *{min-width:0}
+.board{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px;box-shadow:0 20px 40px -28px rgba(15,42,74,.45)}
+.board .bar{display:flex;gap:6px;margin-bottom:12px}
+.board .bar span{width:9px;height:9px;border-radius:50%;background:var(--line)}
+.canvas{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.k{border:1px dashed var(--dot);border-radius:6px;padding:10px;min-height:58px;background:var(--bg)}
+.k em{display:block;width:60%;height:6px;background:var(--line);border-radius:3px;font-style:normal}
+.k strong{display:block;width:40%;height:12px;background:var(--accent);opacity:.75;border-radius:3px;margin-top:10px}
+.chart{grid-column:span 3;min-height:150px;display:flex;align-items:flex-end;gap:7px;padding:14px}
+.chart b{flex:1;background:var(--accent);opacity:.8;border-radius:3px 3px 0 0}
+.map{grid-column:span 1;min-height:150px;position:relative;outline:1.5px solid var(--warm);outline-offset:2px}
+.map::after{content:"drill-down";position:absolute;left:6px;top:-20px;font:500 10px var(--mono);color:var(--warm)}
+.map svg{width:100%;height:100%}
+.cursor{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
+.cursor span{font:500 11px var(--mono);padding:4px 8px;border-radius:4px;color:#fff}
+.feature h3{font-size:clamp(26px,3.4vw,34px)}
+.feature .sub{color:var(--muted);margin:6px 0 18px}
+ul.points{list-style:none;padding:0;margin:0;display:grid;gap:12px}
+ul.points li{padding-left:22px;position:relative}
+ul.points li::before{content:"";position:absolute;left:0;top:.62em;width:10px;height:10px;border:1.5px solid var(--accent);background:var(--surface)}
+.link{display:inline-flex;gap:6px;margin-top:20px;font:500 14px var(--mono);text-decoration:none}
+
+/* other projects */
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-top:clamp(40px,6vw,64px)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:24px;display:flex;flex-direction:column;gap:10px}
+.card h3{font-size:22px}
+.card p{margin:0}
+.card .label{margin-bottom:2px}
+.card a{margin-top:auto;font:500 14px var(--mono);text-decoration:none}
+
+/* leadership */
+.lead{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:28px}
+.lead div{border-top:2px solid var(--ink);padding-top:14px}
+.lead h3{font-size:19px;margin-bottom:6px}
+.lead p{margin:0;color:var(--fg)}
+
+/* skills */
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px 40px}
+.skills h3{font:500 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{font-size:14px;padding:5px 11px;border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--ink)}
+
+/* timeline */
+.tl{position:relative;margin:0;padding:0;list-style:none}
+.tl::before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:2px;background:var(--line)}
+.tl li{position:relative;padding:0 0 26px 36px;display:grid;grid-template-columns:1fr auto;gap:2px 16px}
+.tl li::before{content:"";position:absolute;left:0;top:6px;width:16px;height:16px;border-radius:50%;background:var(--surface);border:2px solid var(--accent)}
+.tl li.now::before{background:var(--accent)}
+.tl h3{font-size:19px}
+.tl .org{color:var(--muted);font-size:15px;grid-column:1}
+.tl time{font:500 13px var(--mono);color:var(--muted);grid-row:1;grid-column:2;white-space:nowrap;font-variant-numeric:tabular-nums}
+.edu{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin-top:20px}
+.edu div{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:20px}
+.edu b{display:block;color:var(--ink);font-family:var(--display);font-size:17px;margin-bottom:4px}
+.edu p{margin:0;font-size:15px;color:var(--muted)}
+
+/* contact */
+.contact{text-align:left}
+.contact h2{font-size:clamp(34px,6vw,64px);font-weight:800;letter-spacing:-.02em;max-width:16ch}
+.mail{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:26px}
+.mail code{font:500 clamp(16px,2.4vw,22px) var(--mono);color:var(--ink);background:var(--surface);border:1px solid var(--line);padding:10px 14px;border-radius:6px;user-select:all;word-break:break-all}
+#copied{font:500 13px var(--mono);color:var(--accent)}
+footer{padding-block:28px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+@media (max-width:760px){
+  .feature{grid-template-columns:1fr}
+  .tl li{grid-template-columns:1fr}
+  .tl time{grid-row:auto;grid-column:1}
+  nav ul{gap:14px}
+}
+@media (prefers-reduced-motion:no-preference){
+  .sel{animation:pop .7s cubic-bezier(.2,.8,.2,1) both}
+  @keyframes pop{from{transform:scale(.97)}to{transform:none}}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <nav aria-label="Main">
+    <a class="mark" href="#top">Ilakkiya R</a>
+    <ul>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#leadership">Leadership</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <header class="hero" id="top">
+    <div class="sel" aria-hidden="false">
+      <i></i><i></i><i></i><i></i>
+      <span class="tag">frame · lead-frontend</span>
+      <h1>Ilakkiya R</h1>
+      <span class="dim">5+ yrs × 8-person team</span>
+    </div>
+    <p class="role">Lead Frontend Developer · Coimbatore, India</p>
+    <p class="intro">I build data-heavy web products in React, Next.js and TypeScript. I was the sole frontend engineer behind Mokkup.ai, a dashboard wireframing tool I architected from scratch, and today I lead the frontend team that keeps it, and our other products, moving forward.</p>
+    <div class="cta">
+      <a class="btn primary" href="#work">See my work</a>
+      <a class="btn" href="https://linkedin.com/in/ilakkiya-ramesh-r16">LinkedIn ↗</a>
+      <a class="btn" href="#contact">Get in touch</a>
+    </div>
+    <div class="facts">
+      <div><b>5+ years</b><span>building frontend at NeenOpal</span></div>
+      <div><b>8</b><span>frontend engineers led</span></div>
+      <div><b>0 → 1</b><span>Mokkup.ai built from scratch</span></div>
+      <div><b>Intern → Lead</b><span>Feb 2021 to Apr 2026</span></div>
+    </div>
+  </header>
+
+  <section id="work">
+    <div class="head"><h2>Selected work</h2><span class="label">Products I built and led</span></div>
+
+    <div class="feature">
+      <div class="board" role="img" aria-label="Illustration of a dashboard being wireframed in an editor, with live collaborators">
+        <div class="bar"><span></span><span></span><span></span></div>
+        <div class="canvas">
+          <div class="k"><em></em><strong></strong></div>
+          <div class="k"><em></em><strong></strong></div>
+          <div class="k"><em></em><strong></strong></div>
+          <div class="k"><em></em><strong></strong></div>
+          <div class="k chart"><b style="height:38%"></b><b style="height:62%"></b><b style="height:48%"></b><b style="height:80%"></b><b style="height:56%"></b><b style="height:92%"></b><b style="height:70%"></b></div>
+          <div class="k map"><svg viewBox="0 0 60 80" aria-hidden="true"><path d="M30 6 L44 14 L50 30 L42 48 L34 70 L26 74 L20 56 L12 40 L16 22 Z" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.5"/></svg></div>
+        </div>
+        <div class="cursor"><span style="background:#1d6fb8">Ilakkiya · editing</span><span style="background:#e0763c">Teammate · viewing</span></div>
+      </div>
+      <div>
+        <span class="label">Featured · 2021 – present</span>
+        <h3>Mokkup.ai</h3>
+        <p class="sub">A dashboard wireframing SaaS for analysts and BI teams.</p>
+        <ul class="points">
+          <li><b>Built it from zero.</b> As the sole frontend developer in its early years, I designed the architecture and the core editor.</li>
+          <li><b>Live Collaboration.</b> Led real-time multi-user editing and template collaboration.</li>
+          <li><b>GenAI "Create with AI".</b> Worked with the AI team to define dashboard logic and architecture for model training.</li>
+          <li><b>Enterprise plan.</b> Drove pricing changes, enterprise onboarding and the "Connect with Sales" journey.</li>
+          <li><b>Codebase health.</b> Led the TypeScript and Redux Toolkit migrations, and improved Core Web Vitals with code splitting and a design system.</li>
+          <li><b>Data viz and security.</b> Geomaps with drill-down, Power BI and Tableau export, SSO, PII encryption and accessibility.</li>
+        </ul>
+        <a class="link" href="https://www.mokkup.ai/">mokkup.ai ↗</a>
+      </div>
+    </div>
+
+    <div class="grid3">
+      <article class="card">
+        <span class="label">Product</span>
+        <h3>GAfix</h3>
+        <p>A Google Analytics audit product. I designed the frontend architecture, led the team to each milestone, and built the Audit Report and Reports pages.</p>
+        <a href="https://www.gafix.ai/">gafix.ai ↗</a>
+      </article>
+      <article class="card">
+        <span class="label">Client work</span>
+        <h3>Payments &amp; analytics platforms</h3>
+        <p>Set up frontend architecture for a client payments platform and guided a client analytics team on requirements, visualization research and fixes.</p>
+      </article>
+      <article class="card">
+        <span class="label">Website</span>
+        <h3>NeenOpal website</h3>
+        <p>Redesigned the site architecture, planned sprints with design, content and backend teams, and owned SEO and GA4 tracking across our sites.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="leadership">
+    <div class="head"><h2>How I lead</h2><span class="label">Team of 8</span></div>
+    <div class="lead">
+      <div><h3>Mentoring</h3><p>Ongoing guidance, code reviews and unblocking for a team of eight frontend engineers.</p></div>
+      <div><h3>Hiring</h3><p>Run technical interviews and help make hiring decisions.</p></div>
+      <div><h3>Planning</h3><p>Allocate people across projects and plan sprints so work ships on time.</p></div>
+      <div><h3>Partnering</h3><p>Work with product, AI, BI, design and operations teams to turn unclear requirements into clear plans.</p></div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="head"><h2>Toolkit</h2><span class="label">What I work with</span></div>
+    <div class="skills">
+      <div><h3>Frontend</h3><div class="chips"><span>React.js</span><span>Next.js</span><span>TypeScript</span><span>JavaScript</span><span>Redux Toolkit</span><span>WebSocket</span></div></div>
+      <div><h3>Performance &amp; architecture</h3><div class="chips"><span>Core Web Vitals</span><span>Code splitting</span><span>Design systems</span><span>Component architecture</span></div></div>
+      <div><h3>Styling &amp; UI</h3><div class="chips"><span>HTML5</span><span>CSS3</span><span>Tailwind CSS</span><span>Webflow</span><span>Accessibility (WCAG)</span></div></div>
+      <div><h3>AI &amp; backend</h3><div class="chips"><span>Claude</span><span>GenAI integration</span><span>Python</span><span>REST APIs</span><span>Stripe</span></div></div>
+      <div><h3>DevOps &amp; tools</h3><div class="chips"><span>Git &amp; GitHub</span><span>GitHub Actions</span><span>CI/CD</span><span>Deployment</span><span>Figma</span></div></div>
+      <div><h3>Security, SEO &amp; analytics</h3><div class="chips"><span>SSO / OAuth</span><span>PII encryption</span><span>GA4</span><span>UTM tracking</span><span>Schema Markup</span></div></div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="head"><h2>Experience</h2><span class="label">Intern to Lead</span></div>
+    <ol class="tl" reversed>
+      <li class="now"><h3>Lead Frontend Developer</h3><time>Apr 2026 – Present</time><span class="org">NeenOpal Inc.</span></li>
+      <li><h3>Senior Frontend Developer</h3><time>Apr 2023 – Mar 2026</time><span class="org">NeenOpal Inc.</span></li>
+      <li><h3>Frontend Developer</h3><time>May 2021 – Mar 2023</time><span class="org">NeenOpal Inc.</span></li>
+      <li><h3>UI Developer Intern</h3><time>Feb 2021 – May 2021</time><span class="org">NeenOpal Inc.</span></li>
+      <li><h3>Front End Developer Intern</h3><time>Dec 2018 – Jun 2019</time><span class="org">Deevita Technologies, Chennai</span></li>
+    </ol>
+    <div class="edu">
+      <div><b>B.E. Computer Science &amp; Engineering</b><p>Sri Krishna College of Technology, Coimbatore · 2019 · CGPA 8.41</p></div>
+      <div><b>Certifications</b><p>BEC Vantage, University of Cambridge (score 159) · Programming in Java, NIIT</p></div>
+      <div><b>Languages</b><p>English, Tamil, Telugu, Hindi</p></div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <span class="label">Contact</span>
+    <h2>Let's build something people enjoy using.</h2>
+    <div class="mail">
+      <code id="email">ilakkiya.416@gmail.com</code>
+      <button class="btn" id="copyBtn" type="button">Copy email</button>
+      <a class="btn" href="https://linkedin.com/in/ilakkiya-ramesh-r16">LinkedIn ↗</a>
+      <span id="copied" aria-live="polite"></span>
+    </div>
+  </section>
+
+  <footer><span>© 2026 Ilakkiya R</span><span>Lead Frontend Developer · Coimbatore, India</span></footer>
+</div>
+
+<script>
+document.getElementById('copyBtn').addEventListener('click', function(){
+  var t = document.getElementById('email').textContent, msg = document.getElementById('copied');
+  function fallback(){ var r=document.createRange(); r.selectNodeContents(document.getElementById('email')); var s=getSelection(); s.removeAllRanges(); s.addRange(r); msg.textContent='Selected. Press Ctrl+C to copy.'; }
+  try { navigator.clipboard.writeText(t).then(function(){ msg.textContent='Copied'; }, fallback); } catch(e){ fallback(); }
+});
+</script>
+
+</body>
+</html>
